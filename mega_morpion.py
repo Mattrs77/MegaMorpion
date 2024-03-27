@@ -40,7 +40,6 @@ class Megamorpion:
                                 if self.play is None or (i, j) == self.play or self.plateau[self.play[1]][self.play[0]].gagnant != None:
                                     if self.plateau[j][i].gagnant is None:
                                         retour, self.play = self.plateau[j][i].clic(symb, co_s)
-                                        print(self.play)
                                         return retour
                                 return 0
 
