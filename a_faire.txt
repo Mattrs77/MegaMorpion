@@ -1,0 +1,51 @@
+Jeu fini juste le stylisé et faire un menu pour le rendre plus jolie a voir
+
+
+
+
+    def modif_val(self):
+        """
+        Fonction de boucle pour 
+        """
+        entrees_acceptees = ("0", "1", "2", "3", "4", "5", "6", "7", "8", "9")
+        nv_valeur = ''
+        fl.efface(self.ef)
+       
+
+        recherche = True
+        while recherche:
+            ev = fl.donne_ev()
+            if fl.type_ev(ev) == "Quitte":
+                recherche = False
+            
+            elif fl.type_ev(ev) == "Touche":
+                if fl.touche(ev) == "Return":
+                    if nv_valeur != '' and int(nv_valeur) < 100:
+                        self.nb = int(nv_valeur)
+                    recherche = False
+            
+                elif fl.touche(ev) == "BackSpace":
+                    nv_valeur = nv_valeur[:-1]
+                
+                else:
+                    for i in range(len(entrees_acceptees)):
+                        if fl.touche(ev) == entrees_acceptees[i]:
+                            if len(nv_valeur) < 3:
+                                nv_valeur += fl.touche(ev)
+
+
+
+            x_min = ((fl.largeur_fenetre() / 5) * self.coord[0])
+            x_max = ((fl.largeur_fenetre() / 5) * (self.coord[0] + 1))
+            y_min = ((fl.hauteur_fenetre() / 5) * self.coord[1])
+            y_max = ((fl.hauteur_fenetre() / 5) * (self.coord[1] + 1))
+            t_texte = fl.taille_texte(str(self.name), 'Sans-Serif', 18)
+            t_texte_c = (t_texte[0] / 2, t_texte[1] / 2)
+            centre_bloc = (x_max - ((x_max - x_min) / 2), y_max - ((y_max - y_min) / 2))
+            fl.efface('recherche')
+            fl.texte(centre_bloc[0], y_min + t_texte_c[1], nv_valeur, ancrage='center', police='Sans-Serif', taille=18, tag='recherche')
+            fl.mise_a_jour()
+
+
+    def re_nb(self):
+        return self.nb
